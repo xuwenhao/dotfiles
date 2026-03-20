@@ -54,6 +54,10 @@ A custom kitten that provides a side panel for tab management.
 
 **Tab switching:** When you switch tabs via the sidebar, it automatically spawns a new sidebar in the target tab (if one doesn't already exist) so navigation stays persistent.
 
+### Security note
+
+This config enables kitty's remote control via unix socket (`allow_remote_control yes` + `listen_on unix:/tmp/kitty.sock`). This allows any local process to send commands to kitty (read terminal content, resize windows, launch processes, etc.). The socket is PID-suffixed (`/tmp/kitty.sock-<PID>`) and protected by filesystem permissions, but if you run untrusted code locally, consider using `allow_remote_control socket-only` or reviewing your socket file permissions.
+
 ### Requirements
 
 - [kitty](https://sw.kovidgoyal.net/kitty/) with remote control enabled (`allow_remote_control yes`)
