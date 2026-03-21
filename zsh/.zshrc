@@ -41,4 +41,4 @@ export NVM_DIR="$HOME/.nvm"
 [[ -f ~/.litellm_proxy.zsh ]] && source ~/.litellm_proxy.zsh
 
 # --- Claude Code ---
-alias ccd='claude --dangerously-skip-permissions --sandbox'
+alias ccd='claude --dangerously-skip-permissions'
