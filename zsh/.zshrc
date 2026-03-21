@@ -39,3 +39,6 @@ export NVM_DIR="$HOME/.nvm"
 # --- External sources (credentials & tools) ---
 [[ -f ~/.zsh_credentials ]] && source ~/.zsh_credentials
 [[ -f ~/.litellm_proxy.zsh ]] && source ~/.litellm_proxy.zsh
+
+# --- Claude Code ---
+alias ccd='claude --dangerously-skip-permissions --sandbox'
