@@ -26,6 +26,14 @@ Background processes (launched with `--type=background`) don't inherit `KITTY_LI
 
 The sidebar uses `--bias=20` for initial split, then queries actual geometry via `kitty @ ls` and resizes to `total_cols * 0.20` clamped to `[SIDEBAR_MIN_COLS, SIDEBAR_MAX_COLS]`.
 
+## Stow usage
+
+This repo lives at `~/Codebase/personal/dotfiles`, not `~/dotfiles`, so stow's default parent-directory target won't work. Always specify `$HOME` explicitly:
+
+```bash
+stow --no-folding -t "$HOME" <package>
+```
+
 ## Conventions
 
 - Catppuccin Mocha color palette throughout
