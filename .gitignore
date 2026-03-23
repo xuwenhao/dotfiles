@@ -4,3 +4,7 @@ __pycache__/
 .claude/settings.local.json
 .worktrees/
 docs/
+
+# dev-remote profiles (keep example.conf only)
+dev-remote/.config/dev-remote/*.conf
+!dev-remote/.config/dev-remote/example.conf
