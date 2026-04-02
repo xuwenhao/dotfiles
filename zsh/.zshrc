@@ -6,15 +6,17 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # --- Kitty tab title: git repo name or directory name ---
-function _set_kitty_tab_title() {
-  local git_root
-  git_root=$(git rev-parse --show-toplevel 2>/dev/null)
-  local title="${git_root:+${git_root:t}}"
-  title="${title:-${PWD:t}}"
-  [[ "$title" == "$USER" ]] && title="~"
-  printf '\e]2;p:%s\a' "$title"
-}
-precmd_functions+=(_set_kitty_tab_title)
+if [[ "$TERM" == "xterm-kitty" || -n "$KITTY_WINDOW_ID" ]]; then
+  function _set_kitty_tab_title() {
+    local git_root
+    git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+    local title="${git_root:+${git_root:t}}"
+    title="${title:-${PWD:t}}"
+    [[ "$title" == "$USER" ]] && title="~"
+    printf '\e]2;p:%s\a' "$title"
+  }
+  precmd_functions+=(_set_kitty_tab_title)
+fi
 
 # --- Conda ---
 if [[ "$(uname)" == "Darwin" ]]; then
