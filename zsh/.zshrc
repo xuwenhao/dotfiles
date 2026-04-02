@@ -2,6 +2,9 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 DISABLE_AUTO_TITLE="true"
+# TODO: zsh-autosuggestions and zsh-syntax-highlighting are external plugins,
+# need to be installed separately (e.g. via package manager or git clone into
+# $ZSH_CUSTOM/plugins/) before they work on a fresh setup.
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
