@@ -11,13 +11,25 @@ dotfiles/
       kitty.conf            # main config (tabs, layout, colors, keybindings)
       sidebar.py            # sidebar kitten — tab navigation TUI
       sidebar_ctl.py        # sidebar controller — toggle & new-tab helpers
+  zsh/                      # zsh configuration
+    .zshrc                  # oh-my-zsh + conda/nvm (cross-platform)
+    .litellm_proxy.zsh      # LiteLLM proxy helper
 ```
 
 ## Installation
 
 ```bash
 cd ~/Codebase/personal/dotfiles
-stow kitty    # symlinks kitty/.config/kitty → ~/.config/kitty
+stow --no-folding -t "$HOME" kitty zsh
+```
+
+### SSH terminfo setup
+
+When SSHing from a terminal with a custom TERM value (Ghostty, Kitty, etc.), the remote machine may lack the terminfo entry, causing display artifacts. Export it from the local machine:
+
+```bash
+infocmp xterm-ghostty | ssh <host> 'tic -x -'   # Ghostty
+infocmp xterm-kitty   | ssh <host> 'tic -x -'   # Kitty
 ```
 
 ## Kitty
@@ -35,7 +47,7 @@ A custom kitten that provides a side panel for tab management.
 | Key | Action |
 |-----|--------|
 | `ctrl+shift+s` | Toggle sidebar |
-| `cmd+t` | New tab with sidebar |
+| `cmd+t` / `ctrl+shift+t` | New tab with sidebar |
 
 **Inside the sidebar:**
 
