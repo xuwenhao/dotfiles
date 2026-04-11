@@ -23,6 +23,44 @@ cd ~/Codebase/personal/dotfiles
 stow --no-folding -t "$HOME" kitty zsh
 ```
 
+### Zsh plugin dependencies
+
+`zsh/.zshrc` enables `zsh-autosuggestions` and
+`zsh-syntax-highlighting` through oh-my-zsh, so install them before
+starting a new shell.
+
+On macOS with Homebrew, run:
+
+```bash
+./scripts/install-zsh-plugins.sh
+```
+
+The script installs both formulas and symlinks them into
+`${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins`, which is where
+oh-my-zsh expects external plugins.
+
+Manual equivalent:
+
+```bash
+brew install zsh-autosuggestions zsh-syntax-highlighting
+mkdir -p "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins"
+mkdir -p "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+mkdir -p "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+ln -sfn "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" \
+  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+ln -sfn "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
+  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+```
+
+Or clone them into oh-my-zsh's custom plugin directory:
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions \
+  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+```
+
 ### SSH terminfo setup
 
 When SSHing from a terminal with a custom TERM value (Ghostty, Kitty, etc.), the remote machine may lack the terminfo entry, causing display artifacts. Export it from the local machine:
